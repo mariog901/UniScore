@@ -86,6 +86,7 @@ public:
             std::cout<<i<<". "<<jucator.getNume()<< " in varsta de "<<jucator.getVarsta()<<" ani "<< "si joaca pe pozitia de "<<jucator.getPozitie()<<std::endl;
             i++;
         }
+        std::cout<<'\n';
     }
     friend std::ostream &operator<<(std::ostream &out, const Echipa &echipa) {
         out << echipa.nume << ""<<std::endl;
@@ -130,14 +131,14 @@ public:
         }
         return out;
     }
-//    bool checkChampionship(const Echipa &echipa) const {
-//        for (const auto& echipa : echipe) {
-//            if (Echipa.getNume() == echipa.getNume()) {
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
+    bool checkChampionship(const Echipa &echipa)  {
+        for (const auto& team : echipe) {
+            if (echipa.getNume() == team.getNume()) {
+                return true;
+            }
+        }
+            return false;
+    }
 
 };
 
@@ -151,6 +152,7 @@ int main() {
     Echipa FCSB("FCSB");
     Echipa CFR("CFR");
     Echipa Craiova("Craiova");
+    Echipa UTA("UTA");
     Jucator Coman("Florinel Coman", 25, "LW");
     Jucator Olaru("Darius Olaru",25, "CM");
     Jucator Muhar("Karlo Muhar" , 30 , "CDM");
@@ -175,6 +177,17 @@ int main() {
 
     std::cout<<"Echipele din liga 1 sunt:"<<"\n"<<Superliga<<"\n";
     Craiova.afisare();
+    FCSB.afisare();
+    CFR.afisare();
+
+//    if(Superliga.checkChampionship(Craiova)==1){
+//        std::cout<<Craiova.getNume()<<" este in Superliga.";
+//    }
+//    else{
+//        std::cout<<Craiova.getNume()<<" nu este in Superliga.";
+//    }
+    std::cout<<Superliga.checkChampionship(Craiova)<<std::endl;
+    std::cout<<Superliga.checkChampionship(UTA)<<std::endl;
     return 0;
 }
 
