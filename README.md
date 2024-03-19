@@ -1,4 +1,5 @@
-# Nu primesc notă pentru că nu am pus titlu și descriere
+Titlul proiectului : UniScore
+Descriere : Aplicatie care stocheaza date despre fotbal precum numele anumitor campionate , anumitor echipe si numele jucatorilor acestora . De asemenea , stocheaza date despre fiecare fotbalist in parte , este o aplicatie similara FlashScore .
 
 ### Important!
 Aveți voie cu cod generat de modele de limbaj la care nu ați contribuit semnificativ doar în folder-ul `generated`.
