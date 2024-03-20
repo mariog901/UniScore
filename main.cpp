@@ -145,10 +145,6 @@ public:
 
 
 int main() {
-//        Jucator Olaru("Darius Olaru",25, "CM");
-//        Jucator Coman( "Florinel Coman",25, "LW");
-//        std::cout << Olaru.getNume() << " " << Olaru.getVarsta() << " "  << Olaru.getPozitie() << "\n";
-//        std::cout << Coman.getNume() << " " << Coman.getVarsta() << " "  << Coman.getPozitie() << "\n";
     Echipa FCSB("FCSB");
     Echipa CFR("CFR");
     Echipa Craiova("Craiova");
@@ -180,12 +176,6 @@ int main() {
     FCSB.afisare();
     CFR.afisare();
 
-//    if(Superliga.checkChampionship(Craiova)==1){
-//        std::cout<<Craiova.getNume()<<" este in Superliga.";
-//    }
-//    else{
-//        std::cout<<Craiova.getNume()<<" nu este in Superliga.";
-//    }
     std::cout<<Superliga.checkChampionship(Craiova)<<std::endl;
     std::cout<<Superliga.checkChampionship(UTA)<<std::endl;
     return 0;
