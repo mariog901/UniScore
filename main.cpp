@@ -308,7 +308,6 @@ int main() {
     Craiova.addPlayer(Mitrita);
     Craiova.addPlayer(Ivan);
     Craiova.addPlayer(Markovic);
-    Craiova.addPlayer(Mitrita);
     Campionat *champ;
     CampionateEuropa Superliga;
     CampionateEuropa LaLiga;
