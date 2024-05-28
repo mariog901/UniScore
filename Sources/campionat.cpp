@@ -2,7 +2,7 @@
 // Created by Mario on 4/3/2024.
 //
 #include "../Headers/campionat.h"
-void Campionat::addTeam(const Echipa &echipa){
+void Campionat::addTeam(std::basic_string<char> echipa){
     echipe.push_back(echipa);
 }
 std::ostream &operator<<(std::ostream &out, const Campionat &campionat) {

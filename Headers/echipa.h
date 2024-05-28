@@ -7,35 +7,37 @@
 
 
 #include<iostream>
+#include <utility>
 #include<vector>
+#include<stdexcept>
 #include "../Headers/jucator.h"
 class Echipa {
 private:
     std::string nume;
     std::vector<Jucator> jucatori;
-    int victorii;
-    int egaluri;
-    int infrangeri;
+    int victorii{};
+    int egaluri{};
+    int infrangeri{};
 
 public:
-    explicit Echipa(const std::string &numeEchipa, const std::vector<Jucator> &fotbalisti) : nume(numeEchipa),jucatori(fotbalisti) {}
+    explicit Echipa(std::string numeEchipa, const std::vector<Jucator> &fotbalisti) : nume(std::move(numeEchipa)),jucatori(fotbalisti) {}
     Echipa()=default;
-    Echipa(const std::string &nume):nume(nume),victorii(0),egaluri(0),infrangeri(0){}
+    explicit Echipa(std::string nume):nume(std::move(nume)),victorii(0),egaluri(0),infrangeri(0){}
 
     ~Echipa()=default;
 
-    const std::string getNume() const { return nume;}
+    [[nodiscard]] std::string getNume() const { return nume;}
     void adaugaVictorie();
     void adaugaEgal();
-    int getVictorii() const;
-    int getEgaluri() const;
+    [[nodiscard]] int getVictorii() const;
+    [[nodiscard]] int getEgaluri() const;
     void setVictorii(int v);
     void setEgaluri(int e);
-    const std::vector<Jucator> getPlayers() const {return jucatori; }
-
+    [[nodiscard]] std::vector<Jucator> getPlayers() const {return jucatori; }
 
 
     void addPlayer(const Jucator&jucator);
+    [[nodiscard]] bool hasThreePlayersWithTenGoals() const ;
     void afisare() const ;
     friend std::ostream &operator<<(std::ostream &out, const Echipa &echipa);
     

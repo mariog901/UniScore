@@ -11,7 +11,7 @@ class pointerClass{
 private:
     Jucator *ptr;
 public:
-    pointerClass(Jucator* pointer) ;
+    explicit pointerClass(Jucator* pointer) ;
     void printare();
 };
 

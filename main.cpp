@@ -1,12 +1,12 @@
-#include <iostream>
-#include <vector>
-#include "Headers/jucator.h"
-#include "Headers/campionat.h"
-#include "Headers/pointerClass.h"
-#include "Headers/ClasaCuPointer.h"
-#include "Headers/CampionateEuropa.h"
-#include "Headers/CampionateAmerica.h"
-#include "Headers/echipa.h"
+//#include <iostream>
+//#include <vector>
+//#include "Headers/jucator.h"
+//#include "Headers/campionat.h"
+//#include "Headers/pointerClass.h"
+//#include "Headers/ClasaCuPointer.h"
+//#include "Headers/CampionateEuropa.h"
+//#include "Headers/CampionateAmerica.h"
+//#include "Headers/echipa.h"
 
 
 //class Jucator {
@@ -353,6 +353,22 @@
 //    }
 //};
 
+#include <iostream>
+#include <vector>
+#include "Headers/jucator.h"
+#include "Headers/campionat.h"
+#include "Headers/pointerClass.h"
+#include "Headers/ClasaCuPointer.h"
+#include "Headers/CampionateEuropa.h"
+#include "Headers/CampionateAmerica.h"
+#include "Headers/echipa.h"
+#include "Headers/FactoryChamp.h"
+#include "Headers/FactoryAmericaChamp.h"
+#include "Headers/DecoratorPlayer.h"
+#include "Headers/DecoratorStatistici.h"
+#include "Headers/Punctaj.h"
+
+
 
 int main() {
     Echipa FCSB("FCSB");
@@ -365,12 +381,15 @@ int main() {
     Echipa ManCity("Manchester City");
     Echipa Chelsea("Chelsea");
     Echipa BocaJuniors("Boca Juniors");
+    Echipa RiverPlate("River Plate");
+
     Jucator Olaru("Darius Olaru", 26, "CM",32,15,3,6,1);
     Jucator Muhar("Karlo Muhar" , 28 , "CDM",33,7,2,8,0);
     Jucator Mitrita("Alexandru Mitrita",29,"LW",31,13,10,6,0);
     Jucator Ivan ("Andrei Ivan" ,27, "LW",31,4,2,5,1);
     Jucator Markovic ("Jovan Markovic" ,23, "ST",34,6,3,5,0);
     Jucator Baiaram("Stefan Baiaram" , 21, "CAM",26,8,1,3,0);
+
 
 
     FCSB.addPlayer(Olaru);
@@ -384,36 +403,70 @@ int main() {
     CampionateEuropa LaLiga;
     CampionateEuropa PremierLeague;
     CampionateAmerica MLS;
-    CampionateAmerica ArgentinaSuperLiga;
+
+    FactoryChamp *factory = new FactoryAmericaChamp;
+    Campionat *ArgentinaSuperLiga = factory->createchamp();
+    ArgentinaSuperLiga->addTeam(BocaJuniors.getNume());
+    ArgentinaSuperLiga->addTeam(RiverPlate.getNume());
+    std::cout<<ArgentinaSuperLiga->checkChampionship(BocaJuniors)<<std::endl;
+    std::cout<<ArgentinaSuperLiga->checkChampionship(RiverPlate)<<std::endl;
+    std::cout<<ArgentinaSuperLiga->checkChampionship(FCSB)<<std::endl;
+
+
     Superliga.addTeam(FCSB.getNume());
     Superliga.addTeam(CFR.getNume());
     Superliga.addTeam(Craiova.getNume());
     PremierLeague.addTeam(Liverpool.getNume());
     PremierLeague.addTeam(Chelsea.getNume());
     PremierLeague.addTeam(ManCity.getNume());
-    ArgentinaSuperLiga.addTeam(BocaJuniors.getNume());
     champ=&Superliga;
     FCSB.setEgaluri(4);
     FCSB.setVictorii(11);
     FCSB.adaugaVictorie();
     ClasaCuPointer objPtr;
     objPtr.setPointerDeBaza(&Superliga);
-    int punctaj=objPtr.apelCalculPct(FCSB);
-    std::cout<<"FCSB are "<<champ->calculPct(FCSB)<<" puncte."<<"\n";
-    std::cout<<"Punctajul echipei este: "<<punctaj<<std::endl;
-//    CampionateEuropa camp(Superliga,FCSB);
-//    CampionateAmerica champ(MLS,InterMiami);
+    int punctaj1=objPtr.apelCalculPct(FCSB);
+    //std::cout<<"FCSB are "<<champ->calculPct(FCSB)<<" puncte."<<"\n";
 
-    auto *juc1=new Jucator("Tavi Popescu",21,"LW",29,2,3,7,0);
+    Punctaj<int> punctajFCSB(punctaj1);
+    std::cout << "Echipa: " << FCSB.getNume() << std::endl;
+    std::cout << "Punctaj inainte de play-off/play-out: " << punctajFCSB.getPunctaj() << std::endl;
+    std::cout << "Punctaj dupa injumatatirea punctelor: " << punctajFCSB.getPunctajDupaInjumatatire() << std::endl;
+
+    Craiova.setVictorii(9);
+    Craiova.setEgaluri(5);
+    ClasaCuPointer objPtr2;
+    objPtr2.setPointerDeBaza(&Superliga);
+    int punctaj2=objPtr2.apelCalculPct(Craiova);
+
+    Punctaj<int>punctajCraiova(punctaj2);
+    std::cout<<"Echipa: " <<Craiova.getNume()<<std::endl;
+    std::cout << "Punctaj inainte de play-off/play-out: " << punctajCraiova.getPunctaj() << std::endl;
+    auto punctajCraiovaFloat = static_cast<float>(punctajCraiova);
+    Punctaj<float> punctajCraiovadupaInjumatatire(punctajCraiovaFloat);
+    std::cout<<" Punctaj dupa injumatatirea punctelor , la intrarea in play-off/play-out " <<punctajCraiovaFloat/2<<std::endl;
+
+
+    auto* juc1=new Jucator("Tavi Popescu",21,"LW",29,2,3,7,0);
     juc1->print();
-    auto *juc2=new Jucator("Baba Alhassan",23,"CM",16,2,1,3,0);
+    auto* juc2=new Jucator("Baba Alhassan",23,"CM",16,2,1,3,0);
+    FCSB.addPlayer(*juc1);
+    FCSB.addPlayer(*juc2);
+    Jucator* juc3 = new DecoratorStatistici(new Jucator("Luis Phelipe",22,"FCSB",20,11,4,3,0));
+    FCSB.addPlayer(*juc3);
 
-
+    try {
+      if (FCSB.hasThreePlayersWithTenGoals()) {
+        std::cout << "Echipa FCSB are cel puțin trei jucători cu cel puțin 10 goluri fiecare." << std::endl;
+      } else {
+        throw std::runtime_error("Echipa FCSB nu are cel puțin trei jucători cu cel puțin 10 goluri fiecare.");
+      }
+    } catch (const std::runtime_error& e) {
+      std::cerr << "Eroare: " << e.what() << std::endl;
+    }
 
     pointerClass ptr1(juc1);
     pointerClass ptr2(juc2);
-
-
     ptr1.printare();
     ptr2.printare();
 
@@ -424,6 +477,7 @@ int main() {
 //    } else {
 //        std::cout << "Jucatorul nu are realizari " << std::endl;
 //    }
+
 
 
 

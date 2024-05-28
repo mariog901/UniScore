@@ -23,7 +23,7 @@ public:
     const std::vector<Echipa> getEchipe() const { return echipe; }
 
 
-    void addTeam(const Echipa &echipa);
+    void addTeam(std::basic_string<char> echipa);
     friend std::ostream &operator<<(std::ostream &out, const Campionat &campionat);
     bool checkChampionship(const Echipa &echipa);
     virtual int calculPct(const Echipa &Echipa) const=0;
