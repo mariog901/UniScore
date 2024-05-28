@@ -5,7 +5,6 @@
 #ifndef UNISCORE_CLASACUPOINTER_H
 #define UNISCORE_CLASACUPOINTER_H
 
-#endif //UNISCORE_CLASACUPOINTER_H
 #include "../Headers/campionat.h"
 class ClasaCuPointer {
 private:
@@ -15,3 +14,5 @@ public:
     void setPointerDeBaza(Campionat *pointer);
     int apelCalculPct(const Echipa &echipa) const;
 };
+
+#endif //UNISCORE_CLASACUPOINTER_H

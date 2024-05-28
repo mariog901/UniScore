@@ -2,7 +2,6 @@
 #ifndef UNISCORE_CAMPIONAT_H
 #define UNISCORE_CAMPIONAT_H
 
-#endif //UNISCORE_CAMPIONAT_H
 #include<iostream>
 #include<vector>
 #include "../Headers/echipa.h"
@@ -10,9 +9,6 @@ class Campionat {
 private:
     std::string nume;
     std::vector<Echipa> echipe;
-    int pctvic;
-    int pctegal;
-    int pctinfr;
 
 public:
     explicit Campionat(const std::string &numeCampionat, const std::vector<Echipa> &echipe) : nume(numeCampionat),
@@ -22,7 +18,7 @@ public:
 
     virtual ~Campionat() = default;
 
-    const std::string &getNume() const { return nume; }
+    [[nodiscard]] const std::string &getNume() const { return nume; }
 
     const std::vector<Echipa> getEchipe() const { return echipe; }
 
@@ -32,3 +28,4 @@ public:
     bool checkChampionship(const Echipa &echipa);
     virtual int calculPct(const Echipa &Echipa) const=0;
 };
+#endif //UNISCORE_CAMPIONAT_H

@@ -5,7 +5,7 @@
 #ifndef UNISCORE_ECHIPA_H
 #define UNISCORE_ECHIPA_H
 
-#endif //UNISCORE_ECHIPA_H
+
 #include<iostream>
 #include<vector>
 #include "../Headers/jucator.h"
@@ -20,7 +20,7 @@ private:
 public:
     explicit Echipa(const std::string &numeEchipa, const std::vector<Jucator> &fotbalisti) : nume(numeEchipa),jucatori(fotbalisti) {}
     Echipa()=default;
-    Echipa(const std::string &nume):nume(nume),victorii(victorii),egaluri(egaluri),infrangeri(infrangeri){}
+    Echipa(const std::string &nume):nume(nume),victorii(0),egaluri(0),infrangeri(0){}
 
     ~Echipa()=default;
 
@@ -40,4 +40,4 @@ public:
     friend std::ostream &operator<<(std::ostream &out, const Echipa &echipa);
     
 };
-
+#endif //UNISCORE_ECHIPA_H
